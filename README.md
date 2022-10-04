@@ -24,5 +24,5 @@ python3
 import whisper
 model = whisper.load_model("medium")
 file_path = "./BITEC_wavedata/BITEC_name_car_near/test_wave00_nr.wav"
-result = result = model.transcribe(file_path, language="en", verbose=True)
+result = model.transcribe(file_path, language="en", verbose=True)
 ```
