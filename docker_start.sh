@@ -1,0 +1,1 @@
+docker run --gpus all -v /home/yuga/yuga_ws/whisper_ws/:/workspace/whisper_ws -it whisper_withmodel

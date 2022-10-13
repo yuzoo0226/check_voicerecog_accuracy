@@ -25,9 +25,16 @@ RUN apt-get install git
 RUN pip install git+https://github.com/openai/whisper.git
 RUN apt update
 RUN apt upgrade -y
-RUN apt install ffmpeg -y
 RUN apt install wget -y
-RUN pip install setuptools-rust
+
+# RUN apt install ffmpeg -y
+# RUN pip install setuptools-rust
+RUN pip install vosk
+RUN pip install noisereduce
+RUN pip install SpeechRecognition
+
+# RUN mkdir /install_ws/ && cd /install
+# RUN 
 
 # download pth
 RUN mkdir ~/.cache/whisper/
