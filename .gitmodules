@@ -1,3 +1,6 @@
-[submodule "whisper"]
-	path = whisper
+[submodule "references/whisper"]
+	path = references/whisper
 	url = https://github.com/openai/whisper.git
+[submodule "references/vosk-api"]
+	path = references/vosk-api
+	url = https://github.com/alphacep/vosk-api.git
