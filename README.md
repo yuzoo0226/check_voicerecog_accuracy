@@ -3,19 +3,19 @@
 ## clone this repository
 ```
 cd your/path
-git clone --recursive https://github.com/yuzoo0226/whisper_ws.git
+git clone --recursive https://github.com/yuzoo0226/check_voicerecog_accuracy.git
 ```
 
 ## docker build
 ```
-cd whisper_ws
+cd check_voicerecog_accuracy
 docker build -t whisper_withmodel docker/
-docker run --gpus all -v /home/your/path/whisper_ws/:/workspace/whisper_ws -it whisper_withmodel
+docker run --gpus all -v /home/your/path/check_voicerecog_accuracy/:/workspace/check_voicerecog_accuracy -it whisper_withmodel
 ```
 
 ## use python
 ```
-cd whisper_ws/wave_data
+cd check_voicerecog_accuracy/wave_data
 python3
 ```
 
