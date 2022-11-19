@@ -4,3 +4,6 @@
 [submodule "references/vosk-api"]
 	path = references/vosk-api
 	url = https://github.com/alphacep/vosk-api.git
+[submodule "references/sgmse"]
+	path = references/sgmse
+	url = https://github.com/sp-uhh/sgmse.git

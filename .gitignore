@@ -1,3 +1,4 @@
 wave_data/BITEC_wavedata/*
 whisper_image/*
 *.pyc
+*.ckpt

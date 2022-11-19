@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y git ninja-build libglib2.0-0 libsm6 lib
 RUN conda clean --all
 
 # RUN apt-get update
-# RUN apt-get install nano
+RUN apt-get install nano
 RUN apt-get install git
 
 RUN pip install git+https://github.com/openai/whisper.git
@@ -27,19 +27,28 @@ RUN apt update
 RUN apt upgrade -y
 RUN apt install wget -y
 
+# pythonでsoundfileを使用できるようにするため
+RUN apt-get install libsndfile1 -y
+
 # RUN apt install ffmpeg -y
 # RUN pip install setuptools-rust
 RUN pip install vosk
 RUN pip install noisereduce
 RUN pip install SpeechRecognition
 
-# RUN mkdir /install_ws/ && cd /install
-# RUN 
+
+## for sgmse
+RUN pip install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+RUN pip install pytorch-lightning
+RUN pip install torch-ema==0.3
+RUN pip install pesq==0.0.4
+RUN pip install pystoi==0.3.3
+
 
 # download pth
 RUN mkdir ~/.cache/whisper/
-RUN wget -P ~/.cache/whisper/ https://openaipublic.azureedge.net/main/whisper/models/65147644a518d12f04e32d6f3b26facc3f8dd46e5390956a9424a650c0ce22b9/tiny.pt
+# RUN wget -P ~/.cache/whisper/ https://openaipublic.azureedge.net/main/whisper/models/65147644a518d12f04e32d6f3b26facc3f8dd46e5390956a9424a650c0ce22b9/tiny.pt
 RUN wget -P ~/.cache/whisper/ https://openaipublic.azureedge.net/main/whisper/models/ed3a0b6b1c0edf879ad9b11b1af5a0e6ab5db9205f891f668f8b0e6c6326e34e/base.pt
-RUN wget -P ~/.cache/whisper/ https://openaipublic.azureedge.net/main/whisper/models/9ecf779972d90ba49c06d968637d720dd632c55bbf19d441fb42bf17a411e794/small.pt
-RUN wget -P ~/.cache/whisper/ https://openaipublic.azureedge.net/main/whisper/models/345ae4da62f9b3d59415adc60127b97c714f32e89e936602e85993674d08dcb1/medium.pt
-RUN wget -P ~/.cache/whisper/ https://openaipublic.azureedge.net/main/whisper/models/e4b87e7e0bf463eb8e6956e646f1e277e901512310def2c24bf0e11bd3c28e9a/large.pt
+# RUN wget -P ~/.cache/whisper/ https://openaipublic.azureedge.net/main/whisper/models/9ecf779972d90ba49c06d968637d720dd632c55bbf19d441fb42bf17a411e794/small.pt
+# RUN wget -P ~/.cache/whisper/ https://openaipublic.azureedge.net/main/whisper/models/345ae4da62f9b3d59415adc60127b97c714f32e89e936602e85993674d08dcb1/medium.pt
+# RUN wget -P ~/.cache/whisper/ https://openaipublic.azureedge.net/main/whisper/models/e4b87e7e0bf463eb8e6956e646f1e277e901512310def2c24bf0e11bd3c28e9a/large.pt
