@@ -15,6 +15,8 @@ RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/machi
 RUN apt-get update && apt-get install -y git ninja-build libglib2.0-0 libsm6 libxrender-dev libxext6 libgl1-mesa-glx \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+# pythonでsoundfileを使用できるようにするため
+RUN apt-get install libsndfile1 -y
 
 RUN conda clean --all
 
@@ -33,6 +35,13 @@ RUN pip install vosk
 RUN pip install noisereduce
 RUN pip install SpeechRecognition
 
+
+## for sgmse
+RUN pip install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+RUN pip install pytorch-lightning
+RUN pip torch-ema==0.3
+RUN pip install pesq==0.0.4
+RUN pip install pystoi==0.3.3
 # RUN mkdir /install_ws/ && cd /install
 # RUN 
 
