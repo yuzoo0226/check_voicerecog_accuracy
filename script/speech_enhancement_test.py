@@ -7,10 +7,12 @@ from soundfile import write
 from torchaudio import load
 from tqdm import tqdm
 
-from references.sgmse.sgmse.model import ScoreModel
-from references.sgmse.sgmse.util.other import ensure_dir, pad_spec
+import sys
+sys.path.append("./references/sgmse")
+from sgmse.model import ScoreModel
+from sgmse.util.other import ensure_dir, pad_spec
 
-GP_CHECKPOINT_FILE = ""
+GP_CHECKPOINT_FILE = "./ckpt/train_wsj0_2cta4cov_epoch=159.ckpt"
 GP_CORRECTOR = "ald"
 GP_N = 30
 GP_SNR = 0.5
@@ -57,9 +59,9 @@ class SpeechEnhancement():
         x_hat = x_hat * norm_factor
 
         # Write enhanced wav file
-        write("/home/yuga/yuga_ws/check_voicerecog_accuracy/wave_data/BITEC_wavedata/BITEC_name_car_near/wo_nr/aiden_se.wav", x_hat.cpu().numpy(), 16000)
+        write("./wave_data/BITEC_wavedata/BITEC_name_car_near/wo_nr/aiden_se.wav", x_hat.cpu().numpy(), 16000)
 
 
 if __name__ == "__main__":
     se_sgmse = SpeechEnhancement()
-    se_sgmse.speech_enhancement_sgmse("/home/yuga/yuga_ws/check_voicerecog_accuracy/wave_data/BITEC_wavedata/BITEC_name_car_near/wo_nr/aiden.wav")
+    se_sgmse.speech_enhancement_sgmse("./wave_data/BITEC_wavedata/BITEC_name_car_near/wo_nr/aiden.wav")
