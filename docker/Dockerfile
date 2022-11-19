@@ -19,12 +19,13 @@ RUN apt-get update && apt-get install -y git ninja-build libglib2.0-0 libsm6 lib
 RUN conda clean --all
 
 # RUN apt-get update
+RUN apt update
+RUN apt upgrade -y
+
 RUN apt-get install nano
 RUN apt-get install git
 
 RUN pip install git+https://github.com/openai/whisper.git
-RUN apt update
-RUN apt upgrade -y
 RUN apt install wget -y
 
 # pythonでsoundfileを使用できるようにするため
