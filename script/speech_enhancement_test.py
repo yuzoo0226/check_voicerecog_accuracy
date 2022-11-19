@@ -1,6 +1,7 @@
 import glob
 from argparse import ArgumentParser
 from os.path import join
+import time
 
 import torch
 from soundfile import write
@@ -32,6 +33,7 @@ class SpeechEnhancement():
         self.model_sgmse.cuda()
 
     def speech_enhancement_sgmse(self, noisy_file) -> None:
+        start = time.time()
         filename = noisy_file.split('/')[-1]
         
         # Load wav
@@ -57,6 +59,8 @@ class SpeechEnhancement():
 
         # Renormalize
         x_hat = x_hat * norm_factor
+        end = time.time()
+        print(end - start)
 
         # Write enhanced wav file
         write("./wave_data/BITEC_wavedata/BITEC_name_car_near/wo_nr/aiden_se.wav", x_hat.cpu().numpy(), 16000)

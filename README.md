@@ -10,7 +10,7 @@ git clone --recursive https://github.com/yuzoo0226/check_voicerecog_accuracy.git
 ```
 cd check_voicerecog_accuracy
 docker build -t whisper_withmodel docker/
-docker run --gpus all -v /home/your/path/check_voicerecog_accuracy/:/workspace/check_voicerecog_accuracy -it whisper_withmodel
+docker run --gpus all -v /home/your/path/check_voicerecog_accuracy/:/workspace/check_voicerecog_accuracy -it check_vr
 ```
 
 ## use python
