@@ -78,6 +78,14 @@ class CheckAccuracy:
         print(dicts) # 確認用
         return dicts
 
+    def read_csv_array(self, file_path) -> "array":
+        csv_arrays = []
+        with open(file_path) as f:
+            reader = csv.reader(f)
+            for row in reader:
+                csv_arrays.append(row)
+        return csv_arrays
+
 
     # voskを用いた音声認識を行う関数
     def recog_by_vosk(self, path, dictionary_type=None, return_all=False, show_all_result=False):
@@ -146,15 +154,20 @@ class CheckAccuracy:
 
 
     # 複数の音声認識を行い，csvファイルに結果を出力する
-    def calc_predict_accuracy(self, base_path, show_all_result=False):
+    def calc_predict_accuracy(self, base_path, csv_filepath="temp.csv", show_all_result=False):
 
         # 指定したパスに有るデータをすべて取得
         files = glob.glob(base_path)
         ground_truth_values = {}
 
-        # ファイル名からgtを取得し，検証しやすいように辞書型変数に整形する
-        for file_path in files:
-            ground_truth_values[file_path] = os.path.splitext(os.path.basename(file_path))[0]
+        try:
+            csv_arrays = read_csv_array(csv_filepath)
+            for array in csv_arrays:
+                ground_truth_values[array[0]] = array[1]
+        except:
+            # ファイル名からgtを取得し，検証しやすいように辞書型変数に整形する
+            for file_path in files:
+                ground_truth_values[file_path] = os.path.splitext(os.path.basename(file_path))[0]
 
         # csvファイルの出力に使用するヘッダー
         headers = [ ["", "whisper", "", "vosk(without dict)", "", "vosk(with dict)", "", "google", ""], ["Ground Truth", "正誤判定", "認識結果", "正誤判定", "認識結果", "正誤判定", "認識結果", "正誤判定", "認識結果",] ]
