@@ -16,7 +16,7 @@ from GP_DICTIONARY import *
 import speech_recognition as sr
  
 GP_SELECTED_WHISPER_MODEL = "large"
-GP_BASE_PATH = "./wave_data/BITEC_wavedata/BITEC_name_car_near/wo_nr/*"
+GP_BASE_PATH = "./wave_data/BITEC_wavedata/BITEC_name_car_near/wo_nr/enhancement/*"
 OUTPUT_FILENAME = "./outputs/result.csv"
 DICTIONARY_TYPE = "name"
 
